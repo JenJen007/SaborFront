@@ -2,6 +2,8 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import { Web } from './views/user/Web.tsx';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import '@coinbase/onchainkit/styles.css'; 
+import { AppProviders } from './providers/AppProviders';
 import VistaCarrito from './views/user/VistaCarrito.tsx';
 import { CarritoProvider } from './components/carrito/CarritoProvider.tsx';
 import { LayoutAdmin } from './views/admin/LayoutAdmin.tsx';
@@ -11,8 +13,10 @@ import { Productos } from './views/admin/Productos.tsx';
 import ProtectedRoute from './components/utils/ProtectedRoute.tsx';
 import { Categorias } from './views/admin/Categorias.tsx';
 import { Reportes } from './views/admin/Reportes.tsx';
+import CompraExitosa from './views/user/CompraExitosa.tsx';
 
 createRoot(document.getElementById('root')!).render(
+  <AppProviders>
   <BrowserRouter>
     <Routes>
       <Route
@@ -80,6 +84,10 @@ createRoot(document.getElementById('root')!).render(
         />
       </Route>
       <Route
+          path="/compra-exitosa"
+          element={<CompraExitosa />}
+        />
+      <Route
         path="*"
         element={
           <Navigate
@@ -90,4 +98,5 @@ createRoot(document.getElementById('root')!).render(
       />
     </Routes>
   </BrowserRouter>
+  </AppProviders>
 );
